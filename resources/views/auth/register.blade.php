@@ -1,141 +1,119 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <!-- Kolom Kiri untuk Form Register -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<section class="vh-200" style="background-color: #eee; border-radius: 25px;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-10">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center align-items-center">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+              <!-- Form -->
+              <div class="col-md-6 order-2 order-lg-1">
 
-                        <div class="row mb-3">
-                            <label for="nama_lengkap" class="col-md-4 col-form-label text-md-end">{{ __('Nama Lengkap') }}</label>
+                <p class="text-center h1 fw-bold mb-4 mt-2">Sign Up</p>
 
-                            <div class="col-md-6">
-                                <input id="nama_lengkap" type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required autocomplete="name" autofocus>
+                <form method="POST" action="{{ route('register') }}">
+                  @csrf
 
-                                @error('nama_lengkap')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                  <div class="mb-3">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" name="nama_lengkap" class="form-control @error('nama_lengkap') is-invalid @enderror"
+                      value="{{ old('nama_lengkap') }}" required />
+                    @error('nama_lengkap')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
 
-                        <div class="row mb-3">
-                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+                  <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
+                      value="{{ old('username') }}" required />
+                    @error('username')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
 
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+                  <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                      value="{{ old('email') }}" required />
+                    @error('email')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
 
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                  <div class="mb-3">
+                    <label class="form-label">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror" required>
+                      <option value="">Pilih</option>
+                      <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                      <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
+                    </select>
+                    @error('jenis_kelamin')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                  <div class="mb-3">
+                    <label class="form-label">Alamat</label>
+                    <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" required>{{ old('alamat') }}</textarea>
+                    @error('alamat')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                  <div class="mb-3">
+                    <label class="form-label">No Telepon</label>
+                    <input type="text" name="no_telp" class="form-control @error('no_telp') is-invalid @enderror"
+                      value="{{ old('no_telp') }}" required />
+                    @error('no_telp')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                  <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required />
+                    @error('password')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
 
-                        <div class="row mb-3">
-                            <label for="jenis_kelamin" class="col-md-4 col-form-label text-md-end">{{ __('Jenis Kelamin') }}</label>
+                  <div class="mb-4">
+                    <label class="form-label">Konfirmasi Password</label>
+                    <input type="password" name="password_confirmation" class="form-control" required />
+                  </div>
 
-                            <div class="col-md-6">
-                                <select id="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" required>
-                                    <option value="L" @if(old('jenis_kelamin') == 'L') selected @endif>{{ __('Laki-laki') }}</option>
-                                    <option value="P" @if(old('jenis_kelamin') == 'P') selected @endif>{{ __('Perempuan') }}</option>
-                                </select>
+                  <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" required />
+                    <label class="form-check-label">Saya setuju dengan <a href="#">syarat & ketentuan</a></label>
+                  </div>
 
-                                @error('jenis_kelamin')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                  <div class="d-flex justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                  </div>
 
-                        <div class="row mb-3">
-                            <label for="alamat" class="col-md-4 col-form-label text-md-end">{{ __('Alamat') }}</label>
+                  <p class="text-center text-muted mt-3">Sudah punya akun? 
+                    <a href="{{ route('login') }}" class="fw-bold text-body"><u>Login di sini</u></a>
+                  </p>
 
-                            <div class="col-md-6">
-                                <textarea id="alamat" class="form-control @error('alamat') is-invalid @enderror" name="alamat" required>{{ old('alamat') }}</textarea>
+                </form>
 
-                                @error('alamat')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+              </div>
 
-                        <div class="row mb-3">
-                            <label for="no_telp" class="col-md-4 col-form-label text-md-end">{{ __('No Telp') }}</label>
+              <!-- Gambar -->
+              <div class="col-md-6 order-1 order-lg-2 d-flex justify-content-center">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid" alt="Sample image" style="max-width: 100%; height: auto;">
+              </div>
 
-                            <div class="col-md-6">
-                                <input id="no_telp" type="text" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ old('no_telp') }}" required>
-
-                                @error('no_telp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
+          </div>
         </div>
-
-        <div class="col-md-6">
-    <img src="{{ asset('/images/logo/regis.png') }}" class="img-fluid" alt="Gambar Register" />
-</div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 @endsection
