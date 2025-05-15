@@ -9,7 +9,12 @@ class Dana extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_dana', 'saldo'];
+    protected $fillable = ['nama_dana', 'saldo', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function pemasukan()
     {

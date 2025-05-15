@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="vh-100" style="background-color:rgb(204, 189, 192);">
+<section class="vh-100" style="background-color:rgb(246, 239, 241);">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">

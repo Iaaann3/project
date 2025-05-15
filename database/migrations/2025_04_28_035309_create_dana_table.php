@@ -17,7 +17,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nama_dana');
             $table->bigInteger('saldo')->default(0);
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +30,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dana');
+        Schema::table('danas', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
     }
 };

@@ -21,24 +21,19 @@
       <h4>General</h4>
       <ul class="list-unstyled components">
          <li class="active">
-            <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="{{ route('home') }}" aria-expanded="false" >
                <i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span>
             </a>
-            <ul class="collapse list-unstyled" id="dashboard">
-               <li><a href="#">> <span>Default Dashboard</span></a></li>
-               <li><a href="#">> <span>Dashboard style 2</span></a></li>
-            </ul>
-            
          </li>
          <li><a href="#"><i class="fa fa-clock-o orange_color"></i> <span>Widgets</span></a></li>
          <li>
-            <a href="{{ route('dana.index') }}"><i class="fa-solid fa-wallet orange_color"></i> Dana</a>
+            <a href="{{ route('dana.index') }}"><i class="fa-solid fa-wallet orange_color"></i> Dompet</a>
          </li>
          <li>
-         <a href="{{ route('dana.index') }}" ><i class="fa-solid fa-sack-dollar" style="color: gold;"></i> Pemasukan</a>
+         <a href="{{ route('pemasukan.index') }}" ><i class="fa-solid fa-sack-dollar" style="color: gold;"></i> Pemasukan</a>
          </li>
          <li>
-         <a href="{{ route('dana.index') }}" ><i class="fa-solid fa-sack-dollar" style="color: red;"></i> Pengeluaran</a>
+         <a href="{{ route('pengeluaran.index') }}" ><i class="fa-solid fa-sack-dollar" style="color: red;"></i> Pengeluaran</a>
          </li>
          <li>
             <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">

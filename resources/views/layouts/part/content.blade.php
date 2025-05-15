@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>@yield('title', 'Judul Halaman')</title>
-
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('/admin/css/style.css') }}">
-</head>
-<body>
-
-    {{-- Navbar, Sidebar, dsb --}}
-    @include('layouts.part.navbar')
-    @include('layouts.part.sidebar')
-
-    {{-- Isi halaman --}}
-    <div class="main-content"  style="margin-left: 280px; padding: 20px;">
-    <div class="main-content">
-        @yield('content')
-        <div class="container-fluid py-4">
+<div class="container-fluid py-4">
       @yield('content')
       
       <h3 class="mb-3 text-white">Dompet anda</h3>
@@ -44,28 +23,34 @@
                       <p class="text-white text-sm opacity-8 mb-0">tanggal</p>
                       <h6 class="text-white mb-0">{{ $data->created_at}}</h6>
                     </div>
-                </div>
-                <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
-                <img class="mt-2" style="width: 60%;" src="{{ asset('admin/images/logo/mastercard.png')}}" alt="logo">
-                </div>
+                  </div>
+                  <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
+                    <img class="w-60 mt-2" src="{{ asset('admin/img/logos/mastercard.png')}}" alt="logo">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         @endforeach
       </div>
+
+      <div class="row mt-4">
+        <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Diagram Keuanganmu</h6>
+              <p class="text-sm mb-0">
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="font-weight-bold">test</span>
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-
-    <!-- JS -->
-    <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Your Custom JS -->
-<script src="{{ asset('/admin/js/custom.js') }}"></script>
-</body>
-</html>
-
+  </div>

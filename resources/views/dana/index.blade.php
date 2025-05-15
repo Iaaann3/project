@@ -51,7 +51,7 @@
          <div id="page-wrapper">
             <div class="container-fluid">
                <div class="row">
-                  <div class="col-lg-12">
+                  <div class="col-lg-6">
                      <h1 class="page-header">Dana</h1>
                   </div>
                </div>
@@ -66,7 +66,7 @@
                         @endif
 
                         <div class="d-flex justify-content-center">
-   <div class="col-md-6">
+   <div class="col-md-10" style="margin-left: 280px; padding: 20px;">
       <div class="white_shd full margin_bottom_30" style="margin-top: 100px;">
          <div class="full graph_head">
             <div class="heading1 margin_0">
