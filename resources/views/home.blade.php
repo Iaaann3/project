@@ -7,7 +7,33 @@
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('/admin/css/style.css') }}">
+    <!-- site icon -->
+<link rel="icon" href="{{ asset('admin/images/fevicon.png') }}" type="image/png" />
+
+<!-- bootstrap css -->
+<link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}" />
+
+<!-- site css -->
+<link rel="stylesheet" href="{{ asset('admin/css/style.css') }}" />
+
+<!-- responsive css -->
+<link rel="stylesheet" href="{{ asset('admin/css/responsive.css') }}" />
+
+<!-- color css -->
+<link rel="stylesheet" href="{{ asset('admin/css/colors.css') }}" />
+
+<!-- select bootstrap -->
+<link rel="stylesheet" href="{{ asset('admin/css/bootstrap-select.css') }}" />
+
+<!-- scrollbar css -->
+<link rel="stylesheet" href="{{ asset('admin/css/perfect-scrollbar.css') }}" />
+
+<!-- custom css -->
+<link rel="stylesheet" href="{{ asset('admin/css/custom.css') }}" />
+
+<!-- calendar file css -->
+<link rel="stylesheet" href="{{ asset('admin/js/semantic.min.css') }}" />
+
 </head>
 <body>
 
@@ -55,6 +81,21 @@
         @endforeach
       </div>
     </div>
+
+    <div class="row column1">
+                        <div class="col-lg-6">
+                           <div class="white_shd full margin_bottom_30">
+                              <div class="full graph_head">
+                                 <div class="heading1 margin_0">
+                                    <h2>Line Chart</h2>
+                                 </div>
+                              </div>
+                              <div class="map_section padding_infor_info">
+                                 <canvas id="line_chart"></canvas>
+                              </div>
+                           </div>
+                        </div>
+                    </div>
     
 
     <!-- JS -->
@@ -65,7 +106,39 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Your Custom JS -->
+<script src="{{ asset('/admin/js/Chart.min.js') }}"></script>
 <script src="{{ asset('/admin/js/custom.js') }}"></script>
+<!-- jQuery -->
+<script src="{{ asset('admin/js/jquery.min.js') }}"></script>
+<script src="{{ asset('admin/js/popper.min.js') }}"></script>
+<script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
+
+<!-- Chart JS -->
+<script src="{{ asset('admin/js/Chart.min.js') }}"></script>
+<script src="{{ asset('admin/js/Chart.bundle.min.js') }}"></script>
+<script src="{{ asset('admin/js/utils.js') }}"></script>
+<script src="{{ asset('admin/js/analyser.js') }}"></script>
+
+<!-- Wow Animation -->
+<script src="{{ asset('admin/js/animate.js') }}"></script>
+
+<!-- Select Bootstrap -->
+<script src="{{ asset('admin/js/bootstrap-select.js') }}"></script>
+
+<!-- Owl Carousel -->
+<script src="{{ asset('admin/js/owl.carousel.js') }}"></script>
+
+<!-- Nice Scrollbar -->
+<script src="{{ asset('admin/js/perfect-scrollbar.min.js') }}"></script>
+
+<!-- Sidebar Scroll Init -->
+<script>
+  var ps = new PerfectScrollbar('#sidebar');
+</script>
+
+<!-- Custom JS -->
+<script src="{{ asset('admin/js/custom.js') }}"></script>
+
 </body>
 </html>
 
