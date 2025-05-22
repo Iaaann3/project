@@ -47,7 +47,7 @@ class PemasukanController extends Controller
         $dana->save();
 
         Alert::success('Berhasil!', 'Pemasukan berhasil ditambahkan!');
-        return redirect()->route('pemasukan.index');
+          return redirect()->route('home')->with('success', 'Pemasukan berhasil ditambahkan!');
     }
 
     public function show($id)

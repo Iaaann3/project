@@ -37,11 +37,11 @@ class PengeluaranController extends Controller
                     ->where('user_id', Auth::id())
                     ->firstOrFail();
 
-        // Kurangi saldo
-        if ($dana->saldo < $request->jumlah) {
-            Alert::error('Gagal!', 'Saldo tidak mencukupi.');
-            return back();
-        }
+        // // Kurangi saldo
+        // if ($dana->saldo < $request->jumlah) {
+        //     Alert::error('Gagal!', 'Saldo tidak mencukupi.');
+        //     return back();
+        // }
 
         $pengeluaran = new Pengeluaran;
         $pengeluaran->deskripsi = $request->deskripsi;
@@ -53,7 +53,7 @@ class PengeluaranController extends Controller
         $dana->save();
 
         Alert::success('Berhasil!', 'Pengeluaran berhasil ditambahkan!');
-        return redirect()->route('pengeluaran.index');
+         return redirect()->route('home')->with('success', 'Pengeluaran berhasil disimpan!');
     }
 
     public function show($id)

@@ -44,7 +44,7 @@
                         @endif
 
                         <div class="d-flex justify-content-center">
-                           <div class="col-md-6">
+                           <div class="col-md-10" style="margin-left: 280px; padding: 20px;">
                               <div class="white_shd full margin_bottom_30" style="margin-top: 100px;">
                                  <div class="full graph_head">
                                     <div class="heading1 margin_0">
@@ -59,8 +59,8 @@
                                                 <th>No</th>
                                                 <th>Deskripsi</th>
                                                 <th>Jumlah</th>
-                                                <th>Payment</th>
-                                                <th>Action</th>
+                                                <th>Dompet</th>
+                                                <th>Tanggal</th>
                                              </tr>
                                           </thead>
                                           <tbody>
@@ -71,22 +71,9 @@
                                                    <td>{{ $item->deskripsi }}</td>
                                                    <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
                                                    <td>{{ $item->dana->nama_dana ?? '-' }}</td>
-                                                   <td>
-                                                      <a href="{{ route('pengeluaran.edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                                      <a href="{{ route('pengeluaran.show', $item->id) }}" class="btn btn-warning">Show</a>
-                                                      <form action="{{ route('pengeluaran.destroy', $item->id) }}" method="post" style="display: inline;">
-                                                         @csrf
-                                                         @method('DELETE')
-                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
-                                                      </form>
-                                                   </td>
+                                                   <td>{{ $item->created_at->format('d M Y') }}</td>
                                                 </tr>
                                              @endforeach
-                                             <tr>
-                                                <td colspan="5" class="text-end">
-                                                   <a href="{{ route('pengeluaran.create') }}" class="btn btn-success">+ Tambah Pengeluaran</a>
-                                                </td>
-                                             </tr>
                                           </tbody>
                                        </table>
                                     </div>

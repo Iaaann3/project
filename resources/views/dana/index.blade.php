@@ -70,7 +70,7 @@
       <div class="white_shd full margin_bottom_30" style="margin-top: 100px;">
          <div class="full graph_head">
             <div class="heading1 margin_0">
-               <h2>Data Payments</h2>
+               <h2>Data Dompet</h2>
             </div>
          </div>
          <div class="table_section padding_infor_info">
@@ -79,7 +79,7 @@
                   <thead>
                      <tr>
                         <th>No</th>
-                        <th>Nama Payments</th>
+                        <th>Nama Dompet</th>
                         <th>Saldo</th>
                         <th>Action</th>
                      </tr>
@@ -105,7 +105,7 @@
                      <tr>
                      <tr>
    <td colspan="4" class="text-end">
-      <a href="{{ route('dana.create') }}" class="btn btn-success">+ Tambah Dana</a>
+      <a href="{{ route('dana.create') }}" class="btn btn-success">+ Tambah Dompet</a>
    </td>
 </tr>
 

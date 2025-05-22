@@ -66,7 +66,7 @@
                         @endif
 
                         <div class="d-flex justify-content-center">
-   <div class="col-md-6">
+   <div class="col-md-10" style="margin-left: 280px; padding: 20px;">
       <div class="white_shd full margin_bottom_30" style="margin-top: 100px;">
          <div class="full graph_head">
             <div class="heading1 margin_0">
@@ -81,7 +81,8 @@
                         <th>No</th>
                         <th>Deskripsi</th>
                         <th>Jumlah</th>
-                        <th>Payment</th>
+                        <th>Dompet</th>
+                        <th>Tanggal</th>
                         <th>Action</th>
                      </tr>
                   </thead>
@@ -93,6 +94,7 @@
                            <td>{{ $item->deskripsi }}</td>
                            <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
                            <td>{{ $item->dana->nama_dana ?? '-' }}</td>
+                           <td>{{ $item->created_at->format('d M Y') }}</td>
                            <td>
                               <a href="{{ route('pemasukan.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                               <a href="{{ route('pemasukan.show', $item->id) }}" class="btn btn-warning">Show</a>
@@ -105,7 +107,7 @@
                         </tr>
                      @endforeach
                      <tr>
-                        <td colspan="5" class="text-end">
+                        <td colspan="6" class="text-end">
                            <a href="{{ route('pemasukan.create') }}" class="btn btn-success">+ Tambah Pemasukan</a>
                         </td>
                      </tr>

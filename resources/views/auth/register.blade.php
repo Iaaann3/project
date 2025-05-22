@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="vh-200" style="background-color: #eee; border-radius: 25px;">
+<section class="vh-200" style="background-image: url({{ asset('images/logo/background2.jpg') }}); height: 100%; background-size: cover; background-position: center;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-10 col-xl-10">

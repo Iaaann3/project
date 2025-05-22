@@ -17,7 +17,7 @@
                   @csrf
                   <div class="form-group mb-3">
                      <label for="nama_dana">Nama Dompet</label>
-                     <input type="text" name="nama_dana" class="form-control" placeholder="Masukkan nama payment" required>
+                     <input type="text" name="nama_dana" class="form-control" placeholder="Masukkan nama Dompet" required>
                   </div>
                   <div class="form-group mb-3">
                      <label for="saldo">Saldo</label>

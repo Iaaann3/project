@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Judul Halaman')</title>
+    <title>@yield('title', 'Home')</title>
 
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -53,49 +53,38 @@
       <div class="d-flex overflow-auto" style="white-space: nowrap;">
         @php $no = 1; @endphp
         @foreach ($dana as $data)
-          <div class="card me-3 bg-transparent shadow-xl" style="min-width: 350px">
-            <div class="overflow-hidden position-relative border-radius-xl" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/card-visa.jpg');">
-              <span class="mask bg-gradient-dark"></span>
-              <div class="card-body position-relative z-index-1 p-3">
-                <i class="fas fa-wifi text-white p-2"></i>
-                <h5 class="text-white mt-4 mb-1 pb-2">{{ $data->nama_dana }}</h5>
-                <p class="text-white">Saldo : Rp. {{ number_format($data->saldo) }}</p>
-                <div class="d-flex">
-                  <div class="d-flex">
-                    <div class="me-4">
-                      <p class="text-white text-sm opacity-8 mb-0">Pemilik Dompet</p>
-                      <h6 class="text-white mb-0">{{ Auth::user()->username }}</h6>
-                    </div>
-                    <div>
-                      <p class="text-white text-sm opacity-8 mb-0">tanggal</p>
-                      <h6 class="text-white mb-0">{{ $data->created_at}}</h6>
-                    </div>
-                </div>
-                <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
-                <img class="mt-2" style="width: 60%;" src="{{ asset('admin/images/logo/mastercard.png')}}" alt="logo">
-                </div>
-                </div>
-              </div>
-            </div>
+          <div class="card me-3 bg-transparent shadow-xl" style="min-width: 350px; border-radius: 20px; overflow: hidden; transition: all 0.3s ease; background: linear-gradient(135deg, #005bea, #00c6fb);">
+  <div class="overflow-hidden position-relative border-radius-xl" style="background-image: url({{ asset('images/logo/visa.jpg') }}); height: 200px; background-size: cover; background-position: center;">
+    <span class="mask" style="background: rgba(0, 0, 0, 0.1); position: absolute; width: 100%; height: 100%; top: 0; left: 0;"></span>
+    <div class="card-body position-relative z-index-1 p-3" style="font-family: monospace; color: white;">
+      <i class="fas fa-wifi text-white p-2"></i>
+      <h5 class="mt-4 mb-1 pb-2 " style="color: white;">{{ $data->nama_dana }}</h5>
+      <p style="color: white;">Saldo : Rp. {{ number_format($data->saldo, 0, ',', '.') }}</p>
+      <div class="d-flex">
+        <div style="font-size: 0.85rem;" class="d-flex">
+          <div class="me-4">
+            <p class="text-sm opacity-75 mb-0" style="color: white;">Pemilik Dompet</p>
+            <h6 class="mb-0 " style="color: white;">{{ Auth::user()->username }}</h6>
           </div>
+         <div style="font-size: 0.85rem;">
+        <div class="opacity-75">Dibuat</div>
+        <strong>{{ $data->created_at->format('d M Y') }}</strong>
+        </div>
+        </div>
+        <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
+          <!-- <img class="mt-2" style="width: 60%;" src="{{ asset('images/logo/mastercard.png')}}" alt="logo"> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         @endforeach
       </div>
     </div>
-
-    <div class="row column1">
-                        <div class="col-lg-6">
-                           <div class="white_shd full margin_bottom_30">
-                              <div class="full graph_head">
-                                 <div class="heading1 margin_0">
-                                    <h2>Line Chart</h2>
-                                 </div>
-                              </div>
-                              <div class="map_section padding_infor_info">
-                                 <canvas id="line_chart"></canvas>
-                              </div>
-                           </div>
-                        </div>
-                    </div>
+<div>
+      <a href="{{ route('pemasukan.create') }}" class="btn btn-success">+ Tambah Pemasukan</a>
+      <a href="{{ route('pengeluaran.create') }}" class="btn btn-success">+ Tambah Pengeluaran</a>
+</div>
     
 
     <!-- JS -->
