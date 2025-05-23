@@ -37,7 +37,7 @@
                      </select>
                   </div>
                   <div class="text-end">
-                     <a href="{{ route('pengeluaran.index') }}" class="btn btn-secondary">Kembali</a>
+                     <a href="{{ route('home') }}" class="btn btn-secondary">Kembali</a>
                      <button type="submit" class="btn btn-success">Simpan</button>
                   </div>
                </form>

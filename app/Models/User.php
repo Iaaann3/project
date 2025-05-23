@@ -24,7 +24,8 @@ class User extends Authenticatable
         'jenis_kelamin', // Jenis kelamin pengguna (L/P)
         'alamat',        // Alamat pengguna
         'no_telp',     // Nomor telepon pengguna
-        'password',      // Password pengguna
+        'password', 
+        'foto',     
     ];
 
     /**

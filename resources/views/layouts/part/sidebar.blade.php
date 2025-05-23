@@ -5,10 +5,12 @@
       </div>
       <div class="sidebar_user_info">
          <div class="icon_setting"></div>
-         <div class="user_profle_side">
-            <div class="user_img">
-               <img class="img-responsive" src="{{ asset('/images/layout_img/user_img.jpg') }}" alt="#" />
-            </div>
+         <div class="user_profle_side">  
+               @php $user = Auth::user(); @endphp
+                           <img src="{{ $user->foto && file_exists(public_path('storage/foto/' . $user->foto)) 
+                           ? asset('storage/foto/' . $user->foto) . '?v=' . filemtime(public_path('storage/foto/' . $user->foto))
+                           : asset('images/layout_img/defaultl.jpg') }}"
+                           alt="Profile Photo" class="rounded-circle img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
             <div class="user_info">
                <h6>{{ Auth::user()->username ?? 'Guest' }}</h6>
                <p><span class="online_animation"></span> Online</p>
@@ -35,18 +37,6 @@
          <li>
          <a href="{{ route('pengeluaran.index') }}" ><i class="fa-solid fa-sack-dollar" style="color: red;"></i> Pengeluaran</a>
          </li>
-         <li>
-            <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-               <i class="fa fa-diamond purple_color"></i> <span>Elements</span>
-            </a>
-            <ul class="collapse list-unstyled" id="element">
-               <li><a href="#">> <span>General Elements</span></a></li>
-               <li><a href="#">> <span>Media Gallery</span></a></li>
-            </ul>
-         </li>
-         <li><a href="#"><i class="fa fa-table purple_color2"></i> <span>Tables</span></a></li>
-         <li><a href="#"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-         <li><a href="#"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
       </ul>
    </div>
 </nav>

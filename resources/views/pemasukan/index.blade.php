@@ -107,9 +107,7 @@
                         </tr>
                      @endforeach
                      <tr>
-                        <td colspan="6" class="text-end">
-                           <a href="{{ route('pemasukan.create') }}" class="btn btn-success">+ Tambah Pemasukan</a>
-                        </td>
+                       
                      </tr>
                   </tbody>
                </table>

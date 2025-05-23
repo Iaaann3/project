@@ -15,13 +15,15 @@
                 <ul class="user_profile_dd list-unstyled mb-0 ms-3">
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset('images/layout_img/user_img.jpg') }}" class="rounded-circle" alt="User" style="width: 40px; height: 40px;">
+                            @php $user = Auth::user(); @endphp
+                            <img src="{{ $user->foto && file_exists(public_path('storage/foto/' . $user->foto)) 
+    ? asset('storage/foto/' . $user->foto) . '?v=' . filemtime(public_path('storage/foto/' . $user->foto))
+    : asset('images/layout_img/defaultl.jpg') }}"
+    alt="Profile Photo" class="rounded-circle img-fluid" style="width: 50px; height: 50px; object-fit: cover;">
                             <span class="ms-2">{{ Auth::user()->username ?? 'Guest' }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Help</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profil.index') }}">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

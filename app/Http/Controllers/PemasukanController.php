@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Pemasukan;
 use App\Models\Dana;
+use App\Models\Pemasukan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -29,25 +28,25 @@ class PemasukanController extends Controller
     {
         $validated = $request->validate([
             'deskripsi' => 'required|max:100',
-            'jumlah' => 'required|numeric|min:0',
-            'id_dana' => 'required|exists:danas,id',
+            'jumlah'    => 'required|numeric|min:0',
+            'id_dana'   => 'required|exists:danas,id',
         ]);
 
         $dana = Dana::where('id', $request->id_dana)
-                    ->where('user_id', Auth::id())
-                    ->firstOrFail();
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
-        $pemasukan = new Pemasukan;
+        $pemasukan            = new Pemasukan;
         $pemasukan->deskripsi = $request->deskripsi;
-        $pemasukan->jumlah = $request->jumlah;
-        $pemasukan->id_dana = $dana->id;
+        $pemasukan->jumlah    = $request->jumlah;
+        $pemasukan->id_dana   = $dana->id;
         $pemasukan->save();
 
         $dana->saldo += $request->jumlah;
         $dana->save();
 
         Alert::success('Berhasil!', 'Pemasukan berhasil ditambahkan!');
-          return redirect()->route('home')->with('success', 'Pemasukan berhasil ditambahkan!');
+        return redirect()->route('home')->with('success', 'Pemasukan berhasil ditambahkan!');
     }
 
     public function show($id)
@@ -84,18 +83,18 @@ class PemasukanController extends Controller
 
         $validated = $request->validate([
             'deskripsi' => 'required|max:100',
-            'jumlah' => 'required|numeric|min:0',
-            'id_dana' => 'required|exists:danas,id',
+            'jumlah'    => 'required|numeric|min:0',
+            'id_dana'   => 'required|exists:danas,id',
         ]);
 
         $dana = Dana::where('id', $request->id_dana)
-                    ->where('user_id', Auth::id())
-                    ->firstOrFail();
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
         // Jika pindah dana, saldo lama tidak dikembalikan (bisa ditambah jika perlu)
         $pemasukan->deskripsi = $request->deskripsi;
-        $pemasukan->jumlah = $request->jumlah;
-        $pemasukan->id_dana = $dana->id;
+        $pemasukan->jumlah    = $request->jumlah;
+        $pemasukan->id_dana   = $dana->id;
         $pemasukan->save();
 
         Alert::success('Berhasil!', 'Pemasukan berhasil diperbarui!');
