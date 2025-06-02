@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Dana;
 
 class User extends Authenticatable
 {
@@ -25,7 +26,8 @@ class User extends Authenticatable
         'alamat',        // Alamat pengguna
         'no_telp',     // Nomor telepon pengguna
         'password', 
-        'foto',     
+        'foto',
+        'is_admin',     
     ];
 
     /**

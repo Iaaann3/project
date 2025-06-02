@@ -3,14 +3,13 @@
         <div class="container-fluid d-flex align-items-center justify-content-between">
 
             <div class="d-flex align-items-center">
-                <!-- Button Oren (Sidebar Toggle) -->
+               
                 <div>
    <img src="{{ asset('/images/logo/smar.png') }}" alt="Logo" class="img-fluid" style="max-height: 60px;">
 </div>
-                <!-- Logo -->
+             
             </div>
 
-            <!-- Kanan: User Profile -->
             <div class="d-flex align-items-center">
                 <ul class="user_profile_dd list-unstyled mb-0 ms-3">
                     <li class="nav-item dropdown">

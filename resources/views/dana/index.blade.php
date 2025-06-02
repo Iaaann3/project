@@ -8,7 +8,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+       <title>Dompet</title>
+      <link href="{{ asset('/images/logo/smar.png') }}" rel="icon">
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -104,9 +105,10 @@
                      @endforeach
                      <tr>
                      <tr>
-   <td colspan="4" class="text-end">
-      <a href="{{ route('dana.create') }}" class="btn btn-success">+ Tambah Dompet</a>
-   </td>
+  <td colspan="4" class="text-end">
+   <a href="{{ route('dana.create') }}" class="btn btn-success">+ Tambah Dompet</a>
+   <a href="{{ route('dana.transfer') }}" class="btn btn-primary">Transfer Dana</a>
+</td>
 </tr>
 
 

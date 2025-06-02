@@ -136,7 +136,9 @@ Dan langkah pertama untuk mewujudkan mimpi itu adalah dengan ngatur keuangan de
   <div class="inner">
     <header class="align-center">
       <p class="special">Atur Uangmu!</p></p>
-      <h2>WangsSmart</h2>
+      <div class="d-flex align-items-center">
+            <img src="{{ asset('/images/logo/smar.png') }}" alt="Logo" class="img-fluid" style="max-height: 60px;">
+        </div>
     </header>
     <div class="gallery">
       <div>

@@ -25,5 +25,6 @@ class Dana extends Model
     {
         return $this->hasMany(Pengeluaran::class);
     }
+    
 }
 

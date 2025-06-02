@@ -5,7 +5,9 @@ use App\Http\Controllers\DanaController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Middleware\isAdmin;
 use Intervention\Image\Facades\Image;
+use App\Http\Controllers\AdminController;
 
 
 
@@ -89,12 +91,21 @@ Route::delete('/profil/foto', function () {
 
     return redirect()->back()->with('success', 'Foto profil berhasil dihapus.');
 })->name('profil.deleteFoto');
+Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+});
 
 
+Route::middleware(['auth', isAdmin::class])->group(function(){
+ Route::get('/dana/transfer', [DanaController::class, 'transferForm'])->name('dana.transfer');
+    Route::post('/dana/transfer', [DanaController::class, 'transfer'])->name('dana.transfer');
 
-Route::resource('pengguna', PenggunaController::class);
-Route::resource('dana', DanaController::class);
-Route::resource('pemasukan', PemasukanController::class);
-Route::resource('pengeluaran', PengeluaranController::class);
+    Route::resource('dana', DanaController::class);
+    Route::resource('pemasukan', PemasukanController::class);
+    Route::resource('pengeluaran', PengeluaranController::class);
+
+});
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -6,6 +6,7 @@ use App\Models\Dana;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class DanaController extends Controller
 {
@@ -75,4 +76,45 @@ class DanaController extends Controller
         Alert::success('Berhasil!', 'Dana berhasil dihapus!');
         return redirect()->route('dana.index');
     }
+    public function transferForm()
+{
+    $danas = Dana::where('user_id', Auth::id())->get();
+    return view('dana.transfer', compact('danas'));
+}
+
+public function transfer(Request $request)
+{
+    $request->validate([
+        'from_dana' => 'required|different:to_dana',
+        'to_dana' => 'required',
+        'jumlah' => 'required|numeric|min:1',
+    ]);
+
+    DB::beginTransaction();
+    try {
+        $from = Dana::where('id', $request->from_dana)->where('user_id', Auth::id())->firstOrFail();
+        $to = Dana::where('id', $request->to_dana)->where('user_id', Auth::id())->firstOrFail();
+
+        if ($from->saldo < $request->jumlah) {
+            Alert::error('Gagal', 'Saldo tidak cukup untuk transfer.');
+            return back();
+        }
+
+        $from->saldo -= $request->jumlah;
+        $to->saldo += $request->jumlah;
+
+        $from->save();
+        $to->save();
+
+        DB::commit();
+        Alert::success('Berhasil!', 'Transfer berhasil dilakukan.');
+        return redirect()->route('dana.index');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        Alert::error('Transfer Gagal', $e->getMessage());
+        return back();
+    }
+}
+
+
 }

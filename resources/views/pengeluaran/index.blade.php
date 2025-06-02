@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Pluto - Pengeluaran</title>
+        <title>Pengeluaran</title>
+        <link href="{{ asset('/images/logo/smar.png') }}" rel="icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="icon" href="{{ asset('/admin/images/fevicon.png') }}" type="image/png" />
@@ -36,12 +37,7 @@
                 <div class="row">
                 <div class="panel-body">
                     <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
+
 
                         <div class="d-flex justify-content-center">
                            <div class="col-md-10" style="margin-left: 280px; padding: 20px;">
@@ -61,6 +57,7 @@
                                                 <th>Jumlah</th>
                                                 <th>Dompet</th>
                                                 <th>Tanggal</th>
+                                                <th>Aksi</th>
                                              </tr>
                                           </thead>
                                           <tbody>
@@ -72,6 +69,15 @@
                                                    <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
                                                    <td>{{ $item->dana->nama_dana ?? '-' }}</td>
                                                    <td>{{ $item->created_at->format('d M Y') }}</td>
+                                                   <td>
+                              <!-- <a href="{{ route('pengeluaran.edit', $item->id) }}" class="btn btn-primary">Edit</a> -->
+                              <a href="{{ route('pengeluaran.show', $item->id) }}" class="btn btn-warning">Show</a>
+                              <form action="{{ route('pengeluaran.destroy', $item->id) }}" method="post" style="display: inline;">
+                                 @csrf
+                                 @method('DELETE')
+                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
+                              </form>
+                           </td>
                                                 </tr>
                                              @endforeach
                                           </tbody>
@@ -88,6 +94,7 @@
             </div>
          </div>
       </div>
+
 
       <!-- JS -->
       <script src="{{ asset('/admin/js/jquery.min.js') }}"></script>

@@ -8,7 +8,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+      <title>Pemasukan</title>
+      <link href="{{ asset('/images/logo/smar.png') }}" rel="icon">
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -38,6 +39,7 @@
       <![endif]-->
    </head>
    <body class="dashboard dashboard_1">
+       
       <div id="wrapper">
 
          <!-- Navigation -->
@@ -48,6 +50,12 @@
          <!-- Sidebar -->
          @include('layouts.part.sidebar')
 
+          <!-- <div class="container mt-5">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div> -->
          <div id="page-wrapper">
             <div class="container-fluid">
                <div class="row">
@@ -55,7 +63,7 @@
                      <h1 class="page-header">Pemasukan</h1>
                   </div>
                </div>
-               <div class="row">
+               <!-- <div class="row">
                   <div class="panel-body">
                      <div class="card-body">
                         @if (session('success'))
@@ -63,7 +71,7 @@
                               {{ session('success') }}
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                            </div>
-                        @endif
+                        @endif -->
 
                         <div class="d-flex justify-content-center">
    <div class="col-md-10" style="margin-left: 280px; padding: 20px;">
@@ -96,7 +104,7 @@
                            <td>{{ $item->dana->nama_dana ?? '-' }}</td>
                            <td>{{ $item->created_at->format('d M Y') }}</td>
                            <td>
-                              <a href="{{ route('pemasukan.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                              <!-- <a href="{{ route('pemasukan.edit', $item->id) }}" class="btn btn-primary">Edit</a> -->
                               <a href="{{ route('pemasukan.show', $item->id) }}" class="btn btn-warning">Show</a>
                               <form action="{{ route('pemasukan.destroy', $item->id) }}" method="post" style="display: inline;">
                                  @csrf
@@ -143,5 +151,6 @@
       </script>
       <script src="{{ asset('/admin/js/custom.js') }}"></script>
       <script src="{{ asset('/admin/js/chart_custom_style1.js') }}"></script>
+@include('sweetalert::alert')
    </body>
 </html>

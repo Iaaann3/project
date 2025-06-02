@@ -74,32 +74,45 @@ class PemasukanController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $pemasukan = Pemasukan::where('id', $id)
-            ->whereHas('dana', function ($query) {
-                $query->where('user_id', Auth::id());
-            })
-            ->firstOrFail();
+{
+    $pemasukan = Pemasukan::where('id', $id)
+        ->whereHas('dana', function ($query) {
+            $query->where('user_id', Auth::id());
+        })
+        ->firstOrFail();
 
-        $validated = $request->validate([
-            'deskripsi' => 'required|max:100',
-            'jumlah'    => 'required|numeric|min:0',
-            'id_dana'   => 'required|exists:danas,id',
-        ]);
+    $validated = $request->validate([
+        'deskripsi' => 'required|max:100',
+        'jumlah'    => 'required|numeric|min:0',
+        'id_dana'   => 'required|exists:danas,id',
+    ]);
 
-        $dana = Dana::where('id', $request->id_dana)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
+    $danaLama = Dana::where('id', $pemasukan->id_dana)
+        ->where('user_id', Auth::id())
+        ->firstOrFail();
 
-        // Jika pindah dana, saldo lama tidak dikembalikan (bisa ditambah jika perlu)
-        $pemasukan->deskripsi = $request->deskripsi;
-        $pemasukan->jumlah    = $request->jumlah;
-        $pemasukan->id_dana   = $dana->id;
-        $pemasukan->save();
+    $danaBaru = Dana::where('id', $request->id_dana)
+        ->where('user_id', Auth::id())
+        ->firstOrFail();
 
-        Alert::success('Berhasil!', 'Pemasukan berhasil diperbarui!');
-        return redirect()->route('pemasukan.index');
-    }
+    // 1. Kurangi saldo dompet lama
+    $danaLama->saldo -= $pemasukan->jumlah;
+    $danaLama->save();
+
+    // 2. Tambah saldo dompet baru
+    $danaBaru->saldo += $request->jumlah;
+    $danaBaru->save();
+
+    // 3. Update data pemasukan
+    $pemasukan->deskripsi = $request->deskripsi;
+    $pemasukan->jumlah    = $request->jumlah;
+    $pemasukan->id_dana   = $danaBaru->id;
+    $pemasukan->save();
+
+    Alert::success('Berhasil!', 'Pemasukan berhasil diperbarui!');
+    return redirect()->route('pemasukan.index');
+}
+
 
     public function destroy($id)
     {
